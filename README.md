@@ -4,7 +4,7 @@ This project represents my third attempt to make a small tool to automate the pr
 I tried to make it easy enough to use that it can be called without any arguments and have reasonable default behavior. So if you don't already know how to use the command line, think it would be possible to spend a little bit of time on a tutorial - all you need are the basics of changing directories and running programs. Explaining how to use the command line is outside the scope of this README, but you can find plenty of help online.
 
 # Installation
-This is a Python 3 script with no external dependencies, designed to be easy to install. [Download a Python 3 runtime](https://www.python.org/downloads/) if you don't already have one. Then clone or download this repo or just the `freesound-attributor.py` script. It was developed with Python 3.14 but should work with any version of Python 3 (I think!)
+This is a Python 3 script with no external dependencies, designed to be easy to install. [Download a Python 3 runtime](https://www.python.org/downloads/) if you don't already have one. Then clone or download this repo or just the [freesound-attributor.py](./freesound-attributor.py) script. It was developed with Python 3.14 but should work with any version of Python 3 (I think!)
 
 # Workflow
 The intended workflow for this tool is to download whatever samples you need from Freesound.org and integrate them into your project. It's important not to modify the names of the files, because this tool works by parsing the names of the files to figure out the name, author, and Freesound URL. If you change the name of the file after the second double underscore, the tool will list the updated name but will still find the correct URL if the author and sound ID number have not been modified.
@@ -17,25 +17,30 @@ This document will use `python3` as the alias for your python interpreter but it
 For help on usage, run `python3 freesound-attributor.py -h` which should print something like this:
 
 ```
-usage: freesound-attributor.py [-h] [-r ROOTDIR] [-e EXTENSIONS [EXTENSIONS ...]] [-o OUTPUT] [-p PROJECTTYPE] [-c]
+usage: freesound-attributor.py [-h] [-r ROOTDIR] [-e EXTENSIONS [EXTENSIONS ...]]
+                               [-o OUTPUT] [-p PROJECTTYPE] [-c]
 
-Examines a directory and subdirectories for audio files and attempts to collect and save attribution information for the ones that
-look like they came from Freesound.org
+Examines a directory and subdirectories for audio files and attempts to collect and save
+attribution information for the ones that look like they came from Freesound.org
 
 options:
   -h, --help            show this help message and exit
   -r, --rootdir ROOTDIR
-                        root directory to search for audio files, defaults to current directory
+                        root directory to search for audio files, defaults to current
+                        directory
   -e, --extensions EXTENSIONS [EXTENSIONS ...]
-                        space-delimited, case-insensitive file extensions to include in search, ex: ogg wav flac. defaults to all
-                        valid file extensions on Freesound.
-  -o, --output OUTPUT   path to output file where attribution information will be saved, defaults to attribution.txt
+                        space-delimited, case-insensitive file extensions to include in
+                        search, ex: ogg wav flac. defaults to all valid file extensions on
+                        Freesound.
+  -o, --output OUTPUT   path to output file where attribution information will be saved,
+                        defaults to attribution.txt
   -p, --projecttype PROJECTTYPE
                         type of project this is, ex. film, game, etc. defaults to "project".
   -c, --collectlicenses
-                        attempts to obtain the creative commons license link for each file. This is slower and requires an
-                        internet connection as we have to query Freesound for each file, but provides more complete attribution
-                        information to better comply with CC licenses.
+                        attempts to obtain the creative commons license link for each file.
+                        This is slower and requires an internet connection as we have to
+                        query Freesound for each file, but provides more complete
+                        attribution information to better comply with CC licenses.
 ```
 
 As mentioned previously, all arguments are optional and should have reasonable defaults. By default, `--collectlicenses` is disabled as this causes the tool to run more slowly and requires an internet connection. But feel free to turn it on, doing so will provide output that conforms a bit better to the attribution requirements for applicable CC licenses.
